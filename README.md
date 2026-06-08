@@ -2,9 +2,13 @@
 
 The NetworkDirect architecture provides application developers with a networking interface that enables zero-copy data transfers between applications, kernel-bypass I/O generation and completion processing, and one-sided data transfer operations. The NetworkDirect service provider interface (SPI) defines the interface that NetworkDirect providers implement to expose their hardware capabilities to applications.
 
-Please find additional documentation in [docs/](./docs) folder.
+## Documentation
 
-NetworkDirect SDK is available in [Nuget](https://www.nuget.org/packages/networkdirect) also.
+- **New to NetworkDirect?** Start with the [tutorial](./docs/tutorial/README.md) — a task-oriented walkthrough that gets you from "what is this?" to a working RDMA program, then drills into each subsystem.
+- **Looking up a method?** Use the [SPI reference](./docs/NetworkDirectSPI.md) for exhaustive parameter and return-value documentation of every interface.
+- All other documentation lives in the [docs/](./docs) folder.
+
+NetworkDirect SDK is available on [NuGet](https://www.nuget.org/packages/networkdirect).
 
 # Building
 

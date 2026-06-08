@@ -1,6 +1,8 @@
 # NetworkDirect SPI (version 2)
 
-The NetworkDirect architecture provides application developers with a networking interface that enables zero-copy data transfers between applications, kernel-bypass I/O generation and completion processing, and one-sided data transfer operations. The NetworkDirect service provider interface (SPI) defines the interface that NetworkDirect providers implement to expose their hardware capabilities to applications. 
+The NetworkDirect architecture provides application developers with a networking interface that enables zero-copy data transfers between applications, kernel-bypass I/O generation and completion processing, and one-sided data transfer operations. The NetworkDirect service provider interface (SPI) defines the interface that NetworkDirect providers implement to expose their hardware capabilities to applications.
+
+> **Looking for a friendlier introduction?** The [NetworkDirect tutorial](./tutorial/README.md) walks the same material as a task-oriented guide — getting-started page, mental model, and deep dives into connections, data transfer, completions, memory, and advanced patterns. This page remains the exhaustive reference.
 
 ## NetworkDirect SPI model
 
