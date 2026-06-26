@@ -7,7 +7,7 @@ handshake end-to-end, calls out the iWARP-specific ordering rules,
 explains private data and read limits, and shows how to disconnect
 cleanly.
 
-> Reference: [IND2Connector](../IND2Connector.md), [IND2Listener](../IND2Listener.md).
+> Reference: [IND2Connector](../references/IND2Connector.md), [IND2Listener](../references/IND2Listener.md).
 
 ## 1. The handshake at a glance
 
@@ -156,7 +156,7 @@ pairs.
 Three rules:
 
 - The maximum sizes are reported by `MaxCallerData` (Connect/Reject) and
-  `MaxCalleeData` (Accept/Reject) in [ND2_ADAPTER_INFO](../IND2Adapter.md#nd2_adapter_info-structure).
+  `MaxCalleeData` (Accept/Reject) in [ND2_ADAPTER_INFO](../references/IND2Adapter.md#nd2_adapter_info-structure).
   Exceeding them is `ND_INVALID_BUFFER_SIZE`.
 - Read it with `GetPrivateData(nullptr, &cb)` first to size the buffer,
   then again with the real buffer.

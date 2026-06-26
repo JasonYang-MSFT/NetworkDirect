@@ -340,4 +340,4 @@ completion model, the memory model, and the patterns that make all of
 it perform.
 
 If you need exhaustive parameter detail on any specific method, head
-back to the reference docs from the [tutorial index](./README.md).
+back to the reference docs from the [tutorial index](../README.md).

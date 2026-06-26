@@ -10,8 +10,8 @@ with two interfaces:
 - **`IND2MemoryWindow` (MW)** — a re-bindable sub-range of an MR you can
   hand to a peer.
 
-> Reference: [IND2MemoryRegion](../IND2MemoryRegion.md),
-> [IND2MemoryWindow](../IND2MemoryWindow.md).
+> Reference: [IND2MemoryRegion](../references/IND2MemoryRegion.md),
+> [IND2MemoryWindow](../references/IND2MemoryWindow.md).
 
 ## 1. Mental model
 
@@ -79,7 +79,7 @@ example measures the cost in registrations-per-second.
 ### Cap: `MaxRegistrationSize`
 
 Each MR can pin at most `MaxRegistrationSize` bytes (see
-[ND2_ADAPTER_INFO](../IND2Adapter.md#nd2_adapter_info-structure)).
+[ND2_ADAPTER_INFO](../references/IND2Adapter.md#nd2_adapter_info-structure)).
 Larger buffers need multiple MRs and multiple SGEs. The adapter's
 overall pinned-memory budget is also finite — check
 `ND_INSUFFICIENT_RESOURCES` and back off.

@@ -6,9 +6,9 @@ families they form, the scatter/gather list format every request uses,
 the flags that meaningfully change behaviour, and the ordering and
 buffer-sizing rules you cannot ignore.
 
-> Reference: [IND2QueuePair](../IND2QueuePair.md),
-> [ND2_SGE](../IND2QueuePair.md#nd2_sge-structure),
-> [ND2_RESULT](../IND2CompletionQueue.md#nd2_result-structure).
+> Reference: [IND2QueuePair](../references/IND2QueuePair.md),
+> [ND2_SGE](../references/IND2QueuePair.md#nd2_sge-structure),
+> [ND2_RESULT](../references/IND2CompletionQueue.md#nd2_result-structure).
 
 ## 1. Two families: two-sided vs. one-sided
 
@@ -28,7 +28,7 @@ flowchart LR
 | Remote CPU involvement | The peer **must** post a matching Receive first. | None. Hardware DMAs straight into/out of the registered buffer. |
 | Discovers a destination by | A pre-posted receive descriptor. | A `remoteAddress` + `remoteToken` you got out-of-band. |
 | When to use | Control messages, RPC-style request/reply, anything where the receiver doesn't know which buffer to use until the message arrives. | Bulk transfers, anything large enough that the per-message setup cost dominates. |
-| Crossover point | — | Use Send below `LargeRequestThreshold`, RDMA above. The adapter reports this — see [ND2_ADAPTER_INFO](../IND2Adapter.md#nd2_adapter_info-structure). |
+| Crossover point | — | Use Send below `LargeRequestThreshold`, RDMA above. The adapter reports this — see [ND2_ADAPTER_INFO](../references/IND2Adapter.md#nd2_adapter_info-structure). |
 
 Real applications usually mix the two: a tiny Send carrying a control
 header that contains a `remoteAddress` + `remoteToken`, followed by an
@@ -213,7 +213,7 @@ Additionally:
 | `ND_OP_FLAG_INLINE` | Send, Write | The bytes travel embedded in the work request — no DMA, no MR lookup. Limited by `MaxInlineDataSize`. The `MemoryRegionToken` in the SGE is ignored. Use it for tiny messages (< `InlineRequestThreshold`). |
 | `ND_OP_FLAG_SILENT_SUCCESS` | Send, Write, Read, Bind, Invalidate | Successful completion is **not** added to the CQ. Failures still are. Saves CQ bandwidth for fire-and-forget Writes. |
 | `ND_OP_FLAG_READ_FENCE` | Send, Write, Read, Bind, Invalidate | All prior `Read` requests must finish before this request starts. Use when a Write must observe data pulled by an earlier Read. |
-| `ND_OP_FLAG_SEND_AND_SOLICIT_EVENT` | Send | The matching Receive on the peer triggers a `ND_CQ_NOTIFY_SOLICITED` notification (if the peer armed one). Pair with [IND2CompletionQueue::Notify](../IND2CompletionQueue.md#ind2completionqueuenotify). |
+| `ND_OP_FLAG_SEND_AND_SOLICIT_EVENT` | Send | The matching Receive on the peer triggers a `ND_CQ_NOTIFY_SOLICITED` notification (if the peer armed one). Pair with [IND2CompletionQueue::Notify](../references/IND2CompletionQueue.md#ind2completionqueuenotify). |
 
 Worked example: choosing inline based on size, lifted from
 [ndtestutil.cpp / ndping.cpp](../../src/examples/ndping/ndping.cpp):
@@ -259,7 +259,7 @@ The most common error statuses and what they tell you:
 | `ND_CANCELED` | Request was flushed by `Flush`, `Disconnect`, or a prior failed request. |
 
 Full matrix of (status × verb) combinations: see the table in
-[IND2CompletionQueue.md](../IND2CompletionQueue.md#nd2_result-structure).
+[IND2CompletionQueue.md](../references/IND2CompletionQueue.md#nd2_result-structure).
 
 ## 7. Sizing the queues
 

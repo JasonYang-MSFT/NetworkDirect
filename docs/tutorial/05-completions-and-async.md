@@ -7,8 +7,8 @@ conventions to tell you which one happened. This page documents those
 conventions, the two ways to wait for completion (poll vs. notify), and
 how to wire ND into IOCP-based servers.
 
-> Reference: [IND2Overlapped](../IND2Overlapped.md),
-> [IND2CompletionQueue](../IND2CompletionQueue.md).
+> Reference: [IND2Overlapped](../references/IND2Overlapped.md),
+> [IND2CompletionQueue](../references/IND2CompletionQueue.md).
 
 ## 1. Two completion mechanisms
 

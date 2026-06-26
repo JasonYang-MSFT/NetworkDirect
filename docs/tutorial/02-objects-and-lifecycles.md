@@ -5,7 +5,7 @@ catalogues every object, explains who creates it and who owns it, and
 shows the order in which they must be created and torn down.
 
 > Reference: every interface name below links to its full method list in
-> the [reference docs](../NetworkDirectSPI.md).
+> the [reference docs](../references/NetworkDirectSPI.md).
 
 ## 1. The full object graph
 
@@ -37,7 +37,7 @@ flowchart TB
     class CQ,MR,MW,SRQ,Conn,Listen async
 ```
 
-The shaded objects inherit from [IND2Overlapped](../IND2Overlapped.md);
+The shaded objects inherit from [IND2Overlapped](../references/IND2Overlapped.md);
 that's how you tell at a glance which APIs can complete asynchronously.
 
 ## 2. The cast, one by one
@@ -55,7 +55,7 @@ The DLL entry point. You almost never touch it directly — the
 
 Reach for `IND2Provider` directly only when you need provider-specific
 extensions exposed through `QueryInterface`. Full surface:
-[IND2Provider](../IND2Provider.md).
+[IND2Provider](../references/IND2Provider.md).
 
 ### IND2Adapter
 
@@ -65,13 +65,13 @@ instances can refer to the same physical NIC if it has multiple IPs.
 
 Important methods you will call right after opening it:
 
-- `Query` — fill in an [ND2_ADAPTER_INFO](../IND2Adapter.md#nd2_adapter_info-structure)
+- `Query` — fill in an [ND2_ADAPTER_INFO](../references/IND2Adapter.md#nd2_adapter_info-structure)
   and treat the limits as gospel.
 - `CreateOverlappedFile` — the kernel handle every async object shares.
 
 Everything else (CQ, MR, MW, QP, connector, listener, SRQ) is created
 *from* the adapter. The adapter is therefore the root of all your
-resources — release it last. See [IND2Adapter](../IND2Adapter.md).
+resources — release it last. See [IND2Adapter](../references/IND2Adapter.md).
 
 ### Overlapped file handle
 
@@ -92,7 +92,7 @@ Implementation notes worth knowing:
 
 ### IND2CompletionQueue
 
-A FIFO of [ND2_RESULT](../IND2CompletionQueue.md#nd2_result-structure)
+A FIFO of [ND2_RESULT](../references/IND2CompletionQueue.md#nd2_result-structure)
 entries — the hardware writes here, you drain it.
 
 Key facts:
@@ -107,7 +107,7 @@ Key facts:
   primitive. They are designed to work together — see
   [Async completions](./05-completions-and-async.md).
 
-Full surface: [IND2CompletionQueue](../IND2CompletionQueue.md).
+Full surface: [IND2CompletionQueue](../references/IND2CompletionQueue.md).
 
 ### IND2MemoryRegion
 
@@ -143,7 +143,7 @@ Use windows when:
 
 Skip windows and use the MR's own remote token when peers always have
 access to the whole region. Reference:
-[IND2MemoryWindow](../IND2MemoryWindow.md).
+[IND2MemoryWindow](../references/IND2MemoryWindow.md).
 
 ### IND2SharedReceiveQueue
 
@@ -154,7 +154,7 @@ worst-case-sized Receive backlogs. Support is feature-flagged: check
 
 Pair it with `CreateQueuePairWithSrq` instead of `CreateQueuePair`. See
 [Advanced patterns](./07-advanced-patterns.md#shared-receive-queues) and
-[IND2SharedReceiveQueue](../IND2SharedReceiveQueue.md).
+[IND2SharedReceiveQueue](../references/IND2SharedReceiveQueue.md).
 
 ### IND2QueuePair
 
@@ -171,7 +171,7 @@ Important sizing knobs (all set at creation, never changed):
 - `maxReceiveRequestSge` / `maxInitiatorRequestSge` — SGE-list lengths.
 - `inlineDataSize` — bytes the QP can stash inside the work request itself.
 
-Reference: [IND2QueuePair](../IND2QueuePair.md).
+Reference: [IND2QueuePair](../references/IND2QueuePair.md).
 
 ### IND2Connector
 
@@ -191,7 +191,7 @@ On the passive side, the listener hands you a connector via
 
 A connector hosts exactly one QP at a time. After disconnecting, the QP
 is dead — release it and create a new one for the next connection.
-Reference: [IND2Connector](../IND2Connector.md).
+Reference: [IND2Connector](../references/IND2Connector.md).
 
 ### IND2Listener
 
@@ -203,7 +203,7 @@ for `Accept`.
 You can post multiple `GetConnectionRequest` calls in flight — they
 complete one per incoming connection — which is the standard recipe for
 servers that need to accept a steady stream without dropping requests.
-Reference: [IND2Listener](../IND2Listener.md).
+Reference: [IND2Listener](../references/IND2Listener.md).
 
 ## 3. Who can be created from whom
 

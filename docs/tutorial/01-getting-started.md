@@ -67,7 +67,7 @@ steps in this order. Bookmark this list; it is the table of contents for
 the rest of the tutorial.
 
 1. **Bootstrap.** `WSAStartup`, `NdStartup`, resolve a usable adapter IP.
-2. **Open an adapter.** `NdOpenAdapter` gives you an [IND2Adapter](../IND2Adapter.md).
+2. **Open an adapter.** `NdOpenAdapter` gives you an [IND2Adapter](../references/IND2Adapter.md).
 3. **Create an overlapped file.** `IND2Adapter::CreateOverlappedFile` —
    the kernel handle that all async ops hang off of.
 4. **Create a completion queue.** Sized to your maximum outstanding work.
@@ -140,7 +140,7 @@ MaxTransferLength:       1073741824
 You will read these numbers from your own code every time you size a
 queue pair or completion queue — never hard-code them. The full structure
 is documented under
-[ND2_ADAPTER_INFO](../IND2Adapter.md#nd2_adapter_info-structure).
+[ND2_ADAPTER_INFO](../references/IND2Adapter.md#nd2_adapter_info-structure).
 
 ## 7. "Hello, RDMA" — the smallest working client/server
 
